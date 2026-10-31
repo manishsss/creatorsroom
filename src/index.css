@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Creators Room Pay — Financial workspace tokens ───────────────────── */
+:root {
+  /* Page */
+  --bg:             #F7F8FA;
+  /* Surfaces */
+  --surface:        #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-tint:   #FFF3E8;
+  /* Text */
+  --ink:            #18181B;
+  --ink-2:          #3F3F46;
+  --muted:          #62626B;
+  --subtle:         #A1A1AA;
+  /* Border */
+  --border:         #E4E4E7;
+  --border-strong:  #D4D4D8;
+  /* Actions */
+  --accent:         #B94708;
+  --accent-hover:   #A03D07;
+  --accent-tint:    #FFF3E8;
+  --focus:          rgba(185,71,8,0.20);
+  /* Semantic */
+  --success:        #166534;
+  --success-bg:     #F0FDF4;
+  --success-border: #BBF7D0;
+  --warning:        #92400E;
+  --warning-bg:     #FFFBEB;
+  --warning-border: #FDE68A;
+  --danger:         #991B1B;
+  --danger-bg:      #FEF2F2;
+  --danger-border:  #FECACA;
+  --info:           #1E3A5F;
+  --info-bg:        #EFF6FF;
+  --info-border:    #BFDBFE;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono { font-family: 'JetBrains Mono', Menlo, 'Courier New', monospace; }
+
+/* focus ring */
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+input:focus, textarea:focus, select:focus { outline: none; box-shadow: 0 0 0 2px var(--focus); border-color: var(--accent) !important; }
+
+/* Sonner toasts */
+[data-sonner-toaster] { font-family: 'Inter', sans-serif; }
+
+/* Scrollbar polish */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

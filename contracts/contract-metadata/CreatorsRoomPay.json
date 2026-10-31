@@ -1,0 +1,882 @@
+{
+  "contractAddress": "0xa7de927c7168dd320f0657803beebb687c7e8098",
+  "network": "ARC-TESTNET",
+  "deployerWalletId": "3c2464b2-8369-52e2-a782-800bbeca5396",
+  "contract_code_path": "/home/user/app/contracts/CreatorsRoomPay.sol",
+  "contract_compiled_code_path": "/home/user/app/contracts/out/CreatorsRoomPay.sol/CreatorsRoomPay.json",
+  "contract_network_and_links": {
+    "Arc Testnet": "https://explorer.testnet.arc.io/address/0xa7de927c7168dd320f0657803beebb687c7e8098"
+  },
+  "contract_deployments": [
+    {
+      "chain": "Arc Testnet",
+      "address": "0xa7de927c7168dd320f0657803beebb687c7e8098",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xa7de927c7168dd320f0657803beebb687c7e8098",
+      "txHash": "0x1a190e52c6c7f9e86c0fa09c0b4a720a70ed5ea5cc360e756c634e8a54b07514",
+      "deployedAt": "2026-10-29T11:38:56.206Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0xf4be6dea250a917f95966489732eed0efa74be1a",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xf4be6dea250a917f95966489732eed0efa74be1a",
+      "txHash": "0x8d67e1b19cd91ad8273e0bdb68130042ffe33b10c7ebc5ed8422b0dc10217110",
+      "deployedAt": "2026-10-20T10:31:25.174Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0xf4be6dea250a917f95966489732eed0efa74be1a",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xf4be6dea250a917f95966489732eed0efa74be1a",
+      "txHash": "0x8d67e1b19cd91ad8273e0bdb68130042ffe33b10c7ebc5ed8422b0dc10217110",
+      "deployedAt": "2026-10-20T03:54:11.065Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x3fdabd335cef458d6977b5f0f694f207e960d448",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x3fdabd335cef458d6977b5f0f694f207e960d448",
+      "txHash": "0x21d3a33fb0aca7238c876bfea12f3b41460f961d1c30dd24320d0ffeaafd0cb7",
+      "deployedAt": "2026-10-20T03:30:25.040Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x452dfc6a03392f5cc3ab472af7cc6025c3e8e380",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x452dfc6a03392f5cc3ab472af7cc6025c3e8e380",
+      "txHash": "0x6ef7d3d1ac4a9873d2deed0afcc8b44f7d518f16f014bf7da514e782e3b0a204",
+      "deployedAt": "2026-10-20T03:05:56.557Z"
+    }
+  ],
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_usdc",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "approveAndPayAll",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "approveCampaign",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "campaignCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "campaigns",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "brand",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "fundDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "approvalDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "claimUnlockTime",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "status",
+          "type": "uint8",
+          "internalType": "enum CreatorsRoomPay.Status"
+        },
+        {
+          "name": "totalBudget",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "claimPayment",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "createCampaign",
+      "inputs": [
+        {
+          "name": "title",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "fundDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "approvalDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "claimUnlockTime",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "creatorWallets",
+          "type": "address[]",
+          "internalType": "address[]"
+        },
+        {
+          "name": "amounts",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "fundCampaign",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getCampaignStatus",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "enum CreatorsRoomPay.Status"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getCreator",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "index",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "wallet",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "deliverable",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "claimed",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getCreatorCount",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "refundBrand",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "replaceCreator",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "newWallet",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "submitDeliverable",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "usdc",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "BrandRefunded",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "brand",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "CampaignApproved",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "CampaignCreated",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "brand",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "totalBudget",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "claimUnlockTime",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "CampaignFunded",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "totalBudget",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "CreatorReplaced",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newWallet",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "DeliverableSubmitted",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "creator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PaymentClaimed",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "creator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "AlreadyClaimed",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorIndex",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ApprovalDeadlineNotPassed",
+      "inputs": [
+        {
+          "name": "approvalDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "currentTime",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ApprovalDeadlinePassed",
+      "inputs": [
+        {
+          "name": "approvalDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "currentTime",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "CampaignNotFound",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ClaimNotYetUnlocked",
+      "inputs": [
+        {
+          "name": "claimUnlockTime",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "currentTime",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "CreatorAmountLengthMismatch",
+      "inputs": [
+        {
+          "name": "walletsLength",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "amountsLength",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "EmptyDeliverableLink",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "EmptyTitle",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "FundDeadlinePassed",
+      "inputs": [
+        {
+          "name": "fundDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "currentTime",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidApprovalDeadline",
+      "inputs": [
+        {
+          "name": "approvalDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "fundDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidCampaignStatus",
+      "inputs": [
+        {
+          "name": "expected",
+          "type": "uint8",
+          "internalType": "enum CreatorsRoomPay.Status"
+        },
+        {
+          "name": "actual",
+          "type": "uint8",
+          "internalType": "enum CreatorsRoomPay.Status"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidClaimUnlockTime",
+      "inputs": [
+        {
+          "name": "claimUnlockTime",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "approvalDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidCreatorCount",
+      "inputs": [
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidCreatorIndex",
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "creatorCount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidFundDeadline",
+      "inputs": [
+        {
+          "name": "fundDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "currentTime",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "OnlyBrand",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "brand",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "OnlyCreator",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "creatorWallet",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ScheduledUnlockCampaign",
+      "inputs": [
+        {
+          "name": "campaignId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "claimUnlockTime",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TransferFailed",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TransferFromFailed",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ZeroAddressUSDC",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "ZeroCreatorAddress",
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ZeroCreatorAmount",
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ZeroTotalBudget",
+      "inputs": []
+    }
+  ]
+}

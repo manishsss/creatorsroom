@@ -10,10 +10,7 @@ dist/
 .env.*.local
 
 # Foundry build artifacts
-contracts/out/*
-!contracts/out/CreatorsRoomPay.sol/
-contracts/out/CreatorsRoomPay.sol/*
-!contracts/out/CreatorsRoomPay.sol/CreatorsRoomPay.json
+contracts/out/
 contracts/cache/
 contracts/broadcast/
 
@@ -28,13 +25,18 @@ contracts/broadcast/
 .DS_Store
 .vscode/
 
-# Exported session data and duplicate source archives
-console.jsonl
-traces.jsonl
-*.tar.gz
-*.zip
+# Cloned source archives and nested repos — not part of the distributable app
 creatorsroom/
+creatorsroom-source.tar.gz
+creatorsroom-clean.tar.gz
+creatorsroom-source.zip
 
-# Other local credentials and environment overrides
+# Foundry test dependency is vendored in lib/forge-std for reproducible clones.
+
+# Exported session data, credentials, and duplicate archives
+*.jsonl
+*.zip
+*.tar.gz
+.agents/
 .env.*
 !.env.example
