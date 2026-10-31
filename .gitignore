@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables — never commit
+.env
+.env.local
+.env.*.local
+
+# Foundry build artifacts
+contracts/out/*
+!contracts/out/CreatorsRoomPay.sol/
+contracts/out/CreatorsRoomPay.sol/*
+!contracts/out/CreatorsRoomPay.sol/CreatorsRoomPay.json
+contracts/cache/
+contracts/broadcast/
+
+# Circle recovery file — never commit
+.circle/
+
+# Logs
+*.log
+/tmp/
+
+# Editor
+.DS_Store
+.vscode/
+
+# Exported session data and duplicate source archives
+console.jsonl
+traces.jsonl
+*.tar.gz
+*.zip
+creatorsroom/
+
+# Other local credentials and environment overrides
+.env.*
+!.env.example
