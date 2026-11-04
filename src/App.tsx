@@ -17,15 +17,24 @@ export type View =
 
 export default function App() {
   const { isConnected, address } = useAccount()
-  // address is set before isConnected settles on reconnect — use either
-  const walletReady = isConnected || !!address
+  // A cached address during reconnect is not an active wallet connection.
+  const walletAddress = isConnected ? address : undefined
+
+  // Reset wallet-only navigation and drafts when disconnecting or changing accounts.
+  return <AppWorkspace key={walletAddress ?? 'disconnected'} walletAddress={walletAddress} />
+}
+
+function AppWorkspace({ walletAddress }: { walletAddress?: `0x${string}` }) {
+  const walletReady = !!walletAddress
   const [view, setView] = useState<View>({ kind: 'list' })
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const [showHowItWorks, setShowHowItWorks] = useState(false)
 
+  const visibleView: View = walletReady ? view : { kind: 'list' }
+
   const pageTitle =
-    view.kind === 'create'   ? 'New Campaign' :
-    view.kind === 'campaign' ? `Campaign #${view.id}` :
+    visibleView.kind === 'create'   ? 'New Campaign' :
+    visibleView.kind === 'campaign' ? `Campaign #${visibleView.id}` :
                                'Campaigns'
 
   return (
@@ -53,7 +62,7 @@ export default function App() {
         style={{ borderRight: '1px solid var(--border)', background: 'var(--surface)' }}
       >
         <Sidebar
-          view={view}
+          view={visibleView}
           onNavigate={(v) => { setView(v); setMobileNavOpen(false) }}
           onHowItWorks={() => { setMobileNavOpen(false); setShowHowItWorks(true) }}
         />
@@ -65,7 +74,7 @@ export default function App() {
         {/* Topbar */}
         <Topbar
           pageTitle={pageTitle}
-          view={view}
+          view={visibleView}
           onBack={() => setView({ kind: 'list' })}
           onMenuOpen={() => setMobileNavOpen(true)}
         />
@@ -92,23 +101,23 @@ export default function App() {
               </div>
             )}
 
-            {/* Not-connected landing — show only on list view when no wallet */}
-            {!walletReady && view.kind === 'list' && (
-              <LandingCard onCreate={() => setView({ kind: 'create' })} />
+            {/* Public explanation remains available without exposing campaign forms. */}
+            {!walletReady && (
+              <LandingCard onHowItWorks={() => setShowHowItWorks(true)} />
             )}
 
-            {view.kind === 'list' && (
+            {walletReady && view.kind === 'list' && (
               <CampaignList
                 onSelect={(id) => setView({ kind: 'campaign', id })}
                 onCreateNew={() => setView({ kind: 'create' })}
               />
             )}
 
-            {view.kind === 'create' && (
+            {walletReady && view.kind === 'create' && (
               <CreateCampaign onCreated={() => setView({ kind: 'list' })} />
             )}
 
-            {view.kind === 'campaign' && (
+            {walletReady && view.kind === 'campaign' && (
               <CampaignDashboard
                 campaignId={view.id}
                 onBack={() => setView({ kind: 'list' })}
@@ -123,7 +132,7 @@ export default function App() {
 }
 
 // ── Not-connected landing ──────────────────────────────────────────────
-function LandingCard({ onCreate }: { onCreate: () => void }) {
+function LandingCard({ onHowItWorks }: { onHowItWorks: () => void }) {
   return (
     <div
       className="mb-6 rounded-xl p-8 text-center"
@@ -137,12 +146,12 @@ function LandingCard({ onCreate }: { onCreate: () => void }) {
       </h1>
       <p className="mx-auto mb-6 max-w-sm text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
         Fund creator campaigns in USDC. Set recipients, lock the budget in escrow, approve work
-        and let creators claim their payment — fully onchain.
+        and pay creators directly. Scheduled payments can be claimed after unlock.
       </p>
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <ConnectButton />
         <button
-          onClick={onCreate}
+          onClick={onHowItWorks}
           className="rounded-lg border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-gray-50"
           style={{ border: '1px solid var(--border)', color: 'var(--ink-2)' }}
         >
@@ -154,8 +163,8 @@ function LandingCard({ onCreate }: { onCreate: () => void }) {
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
         {[
           { n: '1', title: 'Set recipients and amounts', body: 'Add up to 20 creator wallets with fixed USDC allocations.' },
-          { n: '2', title: 'Fund the campaign', body: 'Lock the total budget in the escrow contract with two transactions.' },
-          { n: '3', title: 'Approve so creators can claim', body: 'Creators submit deliverables; you approve to release funds.' },
+          { n: '2', title: 'Fund the campaign', body: 'Confirm the required wallet transactions to lock the budget in escrow.' },
+          { n: '3', title: 'Approve and pay creators', body: 'Review deliverables and send payments, or approve scheduled claims.' },
         ].map(s => (
           <div key={s.n} className="rounded-lg p-4 text-left" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
             <div
@@ -187,19 +196,19 @@ function HowItWorksModal({ onClose }: { onClose: () => void }) {
     },
     {
       title: 'Brand funds the campaign',
-      body: 'Two wallet transactions: approve the USDC allowance, then transfer the full budget into the escrow contract. Funding is all-or-nothing.',
+      body: 'Confirm campaign creation and funding in your wallet. A USDC allowance approval is also required when the existing allowance is insufficient. Funding is all-or-nothing.',
     },
     {
       title: 'Creators submit deliverables',
       body: 'Creators submit a URL stored as on-chain calldata. This is metadata only — it does not release funds.',
     },
     {
-      title: 'Brand approves payouts',
-      body: 'Must happen before the approve-by deadline. Approval is permanent; the budget cannot be reclaimed after approval.',
+      title: 'Brand approves and pays creators',
+      body: 'Before the approve-by deadline, Approve & pay sends immediate payments directly to creator wallets. For scheduled campaigns, approval makes payments claimable after unlock. Approved budgets cannot be reclaimed.',
     },
     {
-      title: 'Creators claim payment',
-      body: 'Each creator sends a claim transaction to receive their USDC. If a scheduled unlock date was set, they must wait until it passes. Funds do not move automatically.',
+      title: 'Scheduled payments are claimed after unlock',
+      body: 'Only scheduled payments require a separate creator claim after the unlock date. The timer itself does not send funds. Immediate payouts need no separate claim.',
     },
     {
       title: 'Expired refund',
@@ -216,6 +225,9 @@ function HowItWorksModal({ onClose }: { onClose: () => void }) {
       />
       {/* Panel */}
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="how-it-works-title"
         className="relative w-full max-w-md rounded-xl p-6 overflow-y-auto"
         style={{
           background: 'var(--surface)',
@@ -225,7 +237,7 @@ function HowItWorksModal({ onClose }: { onClose: () => void }) {
         }}
       >
         <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-base font-semibold" style={{ color: 'var(--ink)' }}>
+          <h2 id="how-it-works-title" className="text-base font-semibold" style={{ color: 'var(--ink)' }}>
             How Creators Room Pay works
           </h2>
           <button
